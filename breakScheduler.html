@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<audio id="myAudio">
+    <source src="soft.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<h1>Break Scheduler</h1>
+
+<script src="breakScheduler.js"></script>
+
+<label for="totalHours">Total Work Hours:</label>
+<input type="number" id="totalHours" name="totalHours" value=8><br><br>
+<label for="workInt">Work Interval(hourly)</label>
+<input type="number" id="workInt" name="workInt" value=1.5><br><br>
+<label for="breakInt">Break Interval(minutes)</label>
+<input type="number" id="breakInt" name="breakInt" value=10><br><br>
+<button onclick="start()">START</button>
+<button onclick="pause()">PAUSE</button>
+<button onclick="reset()">RESET</button>
+
+<p id="demo"></p>
+
+</body>
+</html> 
