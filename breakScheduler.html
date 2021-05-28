@@ -1,27 +1,93 @@
-<!DOCTYPE html>
-<html>
-<body>
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Break Scheduler</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="breakScheduler.css">
+    </head>
+<body class="bg-dark">
+    <script src="breakScheduler.js"></script>
 
-<audio id="myAudio">
-    <source src="soft.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+    <!-- Header -->
+    <div class="navbar bg-primary" style="padding:10px;">
+        <h1 class="text-white text-center">Break Scheduler</h1>
+        <audio id="softAudio">
+            <source src="soft.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="hornAudio">
+            <source src="horn.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div> 
 
-<h1>Break Scheduler</h1>
+    <!-- Form -->
+    <div id="divForm" class="container-fluid" style="padding:70px;">
+        <div class="row">
+            <div class="col-xs-1 col-sm-2 col-md-4 col-lg-4"></div>
+            <div class="col-xs-10 col-sm-8 col-md-4 col-lg-4">
+            <form onsubmit="return false" class="form-horizontal text-primary">
+                <div class="mb-3">
+                    <label class="control-label" for="Work Interval">Work Interval:</label>
+                    <input type="number" class="form-control" id="workInterval" placeholder="Work time between breaks (minutes)">
+                </div>
+                <div class="mb-3">
+                    <label class="control-label" for="Break Interval">Break Interval:</label>
+                    <input type="number" class="form-control" id="breakInterval" placeholder="Break time between work (minutes)">
+                </div>
+                <div class="mb-3">
+                    <label class="control-label col-sm-2" for="Repetitions">Repetitions:</label>
+                    <input type="number" class="form-control" id="repetitions" placeholder="How many breaks?">
+                </div>
+                <div class="mb-3">
+                    <button onclick="start()" class="btn btn-dark btn-outline-primary">START</button>
+                </div>
+            </form>
+            </div>
+            <div class="col-xs-1 col-sm-2 col-md-4 col-lg-4"></div>
+        </div>
+    </div>
 
-<script src="breakScheduler.js"></script>
+    <!-- Count-down timer -->
+    <div id="divTimer" class="container-fluid text-light" style="padding:70px;display:none;">
+        <!--Clock-->
+        <h1 class="center" id="clockMessage"></h1>
+        <div id="clockdiv" class="container text-light">
+          <div>
+            <span class="hours col"></span>
+          </div>
+          <div>
+            <span class="minutes col"></span>
+          </div>
+          <div>
+            <span class="seconds col"></span>
+          </div>
+        </div>
+        <br/>
+        <!-- Options -->
+        <div style="padding:70px;">
+            <p class="text-primary">Sound:</p>
+            <div class="radio">
+                <label class="form-check-label"><input class="form-check-input" type="radio" name="soundOpt" value="softAudio" checked> Regular </label>
+            </div>
+            <div class="radio">
+                <label class="form-check-label"><input class="form-check-input" type="radio" name="soundOpt" value="silent"> Silent </label>
+            </div>
+            <div class="radio">
+                <label class="form-check-label"><input class="form-check-input" type="radio" name="soundOpt" value="hornAudio"> Harsh </label>
+            </div>
+        </div>
+    </div>
 
-<label for="totalHours">Total Work Hours:</label>
-<input type="number" id="totalHours" name="totalHours" value=8><br><br>
-<label for="workInt">Work Interval(hourly)</label>
-<input type="number" id="workInt" name="workInt" value=1.5><br><br>
-<label for="breakInt">Break Interval(minutes)</label>
-<input type="number" id="breakInt" name="breakInt" value=10><br><br>
-<button onclick="start()">START</button>
-<button onclick="pause()">PAUSE</button>
-<button onclick="reset()">RESET</button>
+    <!-- Go home -->
+    <div id="alertHome" class="alert alert-success alert-dismissible fade show" role="alert" style="padding:20px;display:none;">
+        <h1 class="text-center"><strong> Go Home! </strong></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
 
-<p id="demo"></p>
 
 </body>
 </html> 
